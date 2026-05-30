@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.pdb
+*.log
+dist/*.exe
+!dist/.gitkeep
