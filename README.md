@@ -54,6 +54,16 @@ Arquivos e pastas comuns de modificacoes, incluindo:
 - `enbseries`
 - `enbfeeder.asi`
 - `enbseries.h`
+- `enbhelper.dll`
+- `_weatherlist.ini`
+- `enbadaptation.fx.ini`
+- `enbbloom.fx.ini`
+- `enbeffect.fx.ini`
+- `enbeffectpostpass.fx.ini`
+- `enbeffectprepass.fx.ini`
+- `enblens.fx.ini`
+- `enblightsprite.fx.ini`
+- `intlightsprite.fx.ini`
 
 ## Estrutura
 
