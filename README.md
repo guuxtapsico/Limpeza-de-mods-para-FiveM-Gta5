@@ -1,70 +1,80 @@
 # GX Limpeza - FiveM / GTA V
 
-![Windows](https://img.shields.io/badge/Windows-10%2F11-white?style=for-the-badge&logo=windows&logoColor=black&labelColor=111111)
-![CSharp](https://img.shields.io/badge/C%23-WinForms-white?style=for-the-badge&logo=csharp&logoColor=black&labelColor=111111)
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-white?style=for-the-badge&labelColor=111111)
+![Windows](https://img.shields.io/badge/Windows-10%2F11-F57F00?style=for-the-badge&logo=windows&logoColor=white&labelColor=111111)
+![CSharp](https://img.shields.io/badge/C%23-WinForms-F57F00?style=for-the-badge&logo=csharp&logoColor=white&labelColor=111111)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-F57F00?style=for-the-badge&labelColor=111111)
 
-Ferramenta visual para detectar automaticamente o FiveM e o GTA V no Windows e limpar arquivos comuns de mods, plugins, ReShade, ENB e OpenIV.
+Tira mods, ReShade, ENB e scripts do FiveM e do GTA V num lugar só. Você vê a lista do que vai sair, desmarca o que quer manter e limpa.
 
-O objetivo do projeto e ser simples para quem usa e claro para quem quer estudar ou compilar o codigo.
+![GX Limpeza](docs/preview.png)
 
-## Preview
+## Como usar
 
-Interface em tema preto e branco, com deteccao de diretorios, modo simulacao e registro visual da limpeza.
+1. Abra o `GX Limpeza.exe`. Ele acha o FiveM e o GTA V sozinho. Se não achar, use **Trocar pasta**.
+2. Escolha o que limpar: **FiveM**, **GTA V** ou os dois.
+3. Clique em **Ver o que vai sair**. Isso só monta a lista, não apaga nada.
+4. Desmarque na lista o que quiser manter. A caixinha do grupo marca ou desmarca tudo do jogo.
+5. Clique em **Limpar agora** e confirme. Cada item mostra ✓ se saiu ou ⚠ se deu erro.
 
-> O executavel nao acompanha o repositorio. Ele deve ser gerado localmente pelo script de build.
+## O que ele limpa
 
-## Recursos
+### FiveM (pasta `FiveM.app`)
 
-- Detecta automaticamente a pasta `FiveM.app`.
-- Detecta o GTA V usando configuracoes do FiveM e caminhos comuns.
-- Permite selecionar manualmente a pasta do FiveM.
-- Possui modo `Simular`, para ver o que seria apagado antes de limpar.
-- Limpa mods e plugins do FiveM.
-- Remove arquivos comuns de mods do GTA V, como ENB, ReShade, OpenIV e ASI loaders.
-- Mantem um registro visual da operacao dentro do painel.
-
-## O Que Ele Limpa
-
-### FiveM
-
-- `mods`
-- `plugins`
-- `reshade-shaders`
-- `ReShade`
-- `ShaderCache`
+- Conteúdo das pastas `mods` e `plugins`
+- `reshade-shaders`, `ReShade` e `ShaderCache`
 - `CitizenFX\cache\priv`
-- `citizen`
+- `citizen` (o FiveM baixa de novo quando abrir)
 
-### GTA V
+### GTA V (pasta do jogo)
 
-Arquivos e pastas comuns de modificacoes, incluindo:
+Pastas `mods`, `scripts`, `plugins`, `reshade-shaders`, `enbseries` e arquivos de ReShade, ENB, ScriptHook, OpenIV e menus `.asi`.
 
-- `mods`
-- `plugins`
-- `scripts`
-- `reshade-shaders`
-- `dinput8.dll`
-- `ScriptHookV.dll`
-- `OpenIV.asi`
-- `ReShade.ini`
-- `dxgi.dll`
-- `d3d11.dll`
-- `enbseries.ini`
-- `enbseries`
-- `enbfeeder.asi`
-- `enbseries.h`
+<details>
+<summary>Ver a lista completa do GTA V</summary>
+
+- Pastas: `mods`, `scripts`, `plugins`, `reshade-shaders`, `enbseries`, `shaderinput`, `menyooStuff`, `QuantV`, `NVE`, `NaturalVision Evolved`
+- DLL e ASI: `d3d11.dll`, `d3d12.dll`, `dxgi.dll`, `dinput8.dll`, `ScriptHookV.dll`, `ScriptHookVDotNet.asi`, `ScriptHookVDotNet2.dll`, `ScriptHookVDotNet3.dll`, `NativeTrainer.asi`, `Menyoo.asi`, `OpenIV.asi`, `openCameraV.asi`, `HeapAdjuster.asi`, `PackfileLimitAdjuster.asi`, `enbfeeder.asi`
+- Configurações: `Gameconfig.xml`, `ReShade.ini`, `ReShadePreset.ini`, `enblocal.ini`, `enbseries.ini`, `enbfeeder.ini`, `enbseries.h`
+- Efeitos ENB: `enbadaptation.fx`, `enbbloom.fx`, `enbeffect.fx`, `enbeffectpostpass.fx`, `enbeffectprepass.fx`, `enblens.fx`, `enblightsprite.fx`
+- Logs: `ReShade.log`, `OpenIV.log`, `openCameraV.log`
+
+</details>
+
+## Segurança
+
+- Nada é apagado sem você confirmar. **Ver o que vai sair** só mostra a lista.
+- Só o que estiver marcado na lista é apagado.
+- O GTA V só é limpo se a pasta tiver o `GTA5.exe`.
+- Avisa se o FiveM ou o GTA V estiver aberto antes de limpar.
+- Seus saves e sua conta não são tocados.
+
+## Como compilar
+
+Abra o PowerShell na pasta do projeto e rode:
+
+```powershell
+.\build.ps1
+```
+
+O executável fica em `dist\GX Limpeza.exe`. Ele não vem no repositório; cada push na `main` também gera o `.exe` nos artefatos do GitHub Actions.
+
+Requisitos: Windows 10 ou 11, .NET Framework 4 (já vem no Windows, com o `csc.exe`) e PowerShell.
 
 ## Estrutura
 
 ```text
 .
 ├── assets/
-│   └── GXCleaner.ico
+│   ├── GXCleaner.ico      ícone do programa
+│   ├── gx-logo.png        logo GX do topo
+│   ├── fivem.png          imagem do cartão do FiveM
+│   └── gtav.jpg           imagem do cartão do GTA V
+├── docs/
+│   └── preview.png        print usado neste README
 ├── dist/
 │   └── .gitkeep
 ├── src/
-│   └── GXCleanerGui.cs
+│   └── GXCleanerGui.cs    o programa inteiro
 ├── build.ps1
 ├── README.md
 ├── CHANGELOG.md
@@ -73,32 +83,10 @@ Arquivos e pastas comuns de modificacoes, incluindo:
 └── LICENSE
 ```
 
-## Como Compilar
+## Observação sobre o Windows
 
-Abra o PowerShell na pasta do projeto e execute:
-
-```powershell
-.\build.ps1
-```
-
-O executavel sera gerado em:
-
-```text
-dist\GX Limpeza.exe
-```
-
-## Requisitos
-
-- Windows 10 ou Windows 11.
-- .NET Framework com `csc.exe` disponivel no sistema.
-- PowerShell.
-
-## Observacao de Seguranca
-
-Este projeto remove arquivos e pastas de mods. Use primeiro o modo `Simular` se quiser revisar o que sera apagado.
-
-Builds locais ou executaveis baixados da internet podem ser marcados pelo Windows SmartScreen ou por antivirus, principalmente quando nao possuem assinatura digital. Para distribuicao publica, o ideal e assinar o `.exe` com um certificado de Code Signing.
+Executáveis sem assinatura digital podem ser marcados pelo Windows SmartScreen ou por antivírus. Para distribuir publicamente, o ideal é assinar o `.exe` com um certificado de Code Signing.
 
 ## Aviso
 
-Este projeto nao e afiliado a Rockstar Games, Cfx.re, FiveM, Steam, Epic Games ou qualquer distribuidora oficial. Use por sua conta e risco.
+Este projeto não é afiliado à Rockstar Games, Cfx.re, FiveM, Steam, Epic Games ou qualquer distribuidora oficial. FiveM e Grand Theft Auto V são marcas dos seus donos; as imagens dos jogos são usadas só para identificá-los na interface. Use por sua conta e risco.
